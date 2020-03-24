@@ -1,5 +1,28 @@
 $(function () {
 
+$('#transaction-form').submit((event) => {
+  event.preventDefault()
+
+  const amount = parseFloat($('#transaction-amount').val())
+  const transactionType = $('#transaction-type').val()
+
+console.log(amount)
+console.log(transactionType)
+
+processTransaction(transactionType, amount)
+})
+
+
+function processTransaction(transactionType, amount) {
+  if (transactionType === 'deposit') {
+    checkingAccount.deposit(amount)
+  } else {
+    checkingAccount.withdrawl(amount)
+  }
+
+  console.log(checkingAccount.transactionHistory)
+}
+
 // create a new class
 class BankAccount {
   constructor(accountType, amount) {
@@ -51,13 +74,13 @@ const oldBalance = this._amount
 const checkingAccount = new BankAccount('checking')
 
 // testing
-console.log(checkingAccount)
-checkingAccount.deposit(100)
-console.log(checkingAccount)
-checkingAccount.withdrawl(75)
-checkingAccount.withdrawl(50)
-console.log(checkingAccount)
-
-console.log(checkingAccount.showBalance())
-console.log(checkingAccount)
+// console.log(checkingAccount)
+// checkingAccount.deposit(100)
+// console.log(checkingAccount)
+// checkingAccount.withdrawl(75)
+// checkingAccount.withdrawl(50)
+// console.log(checkingAccount)
+//
+// console.log(checkingAccount.showBalance())
+// console.log(checkingAccount)
 })
